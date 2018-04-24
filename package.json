@@ -1,0 +1,13 @@
+{
+  "name": "company_men",
+  "private": true,
+  "dependencies": {
+    "@rails/webpacker": "3.4",
+    "vue": "^2.5.16",
+    "vue-loader": "^15.0.0",
+    "vue-template-compiler": "^2.5.16"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "2.11.2"
+  }
+}
