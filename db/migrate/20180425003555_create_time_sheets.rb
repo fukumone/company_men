@@ -8,5 +8,6 @@ class CreateTimeSheets < ActiveRecord::Migration[5.2]
       t.references :employee, index: true
       t.timestamps
     end
+    add_index :time_sheets, [:work_day, :employee_id], :unique => true
   end
 end

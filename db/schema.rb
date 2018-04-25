@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_04_25_003555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_time_sheets_on_employee_id"
+    t.index ["work_day", "employee_id"], name: "index_time_sheets_on_work_day_and_employee_id", unique: true
   end
 
 end

@@ -3,6 +3,8 @@ class TimeSheet < ApplicationRecord
 
   enum status: { off: 0, working: 1, done: 2 }
 
+  validates :work_day, uniqueness: { scope: :employee_id }
+
   def working_time
     time = self.clock_out - self.clock_in
     (time / 3600.0).floor(3)

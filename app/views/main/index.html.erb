@@ -27,8 +27,8 @@
           <td><%= time_sheet.try(:work_day) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_in)) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_out)) %></td>
-          <td><%= time_sheet.working_time %></td>
-          <td><%= time_sheet.status %></td>
+          <td><%= time_sheet.try(:working_time) %></td>
+          <td><%= time_sheet.try(:status) %></td>
           <td><%= link_to '編集', '/' %></td>
         </tr>
       <% end %>
