@@ -15,6 +15,7 @@
         <th scope="col">出勤</th>
         <th scope="col">退勤</th>
         <th scope="col">労働時間</th>
+        <th scope="col">勤務状態</th>
         <th scope="col">アクション</th>
       </tr>
     </thead>
@@ -27,6 +28,7 @@
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_in)) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_out)) %></td>
           <td><%= time_sheet.working_time %></td>
+          <td><%= time_sheet.status %></td>
           <td><%= link_to '編集', '/' %></td>
         </tr>
       <% end %>

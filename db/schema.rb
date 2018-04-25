@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2018_04_25_003555) do
     t.date "work_day"
     t.datetime "clock_in", precision: 6
     t.datetime "clock_out", precision: 6
+    t.integer "status", default: 0, null: false
     t.bigint "employee_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

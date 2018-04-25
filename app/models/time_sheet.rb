@@ -1,6 +1,8 @@
 class TimeSheet < ApplicationRecord
   belongs_to :employee
 
+  enum status: { off: 0, working: 1, done: 2 }
+
   def working_time
     time = self.clock_out - self.clock_in
     (time / 3600.0).floor(3)

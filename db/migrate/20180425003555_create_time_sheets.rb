@@ -4,6 +4,7 @@ class CreateTimeSheets < ActiveRecord::Migration[5.2]
       t.date :work_day
       t.datetime :clock_in, precision: 6
       t.datetime :clock_out, precision: 6
+      t.integer :status, default: 0, null: false
       t.references :employee, index: true
       t.timestamps
     end
