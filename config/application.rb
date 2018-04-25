@@ -28,5 +28,11 @@ module CompanyMen
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    config.active_record.default_timezone = :local
+    # Timezone
+    config.time_zone = 'Tokyo'
+
+    config.i18n.default_locale = :ja
   end
 end

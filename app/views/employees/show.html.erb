@@ -1,0 +1,29 @@
+<article class="time_sheet">
+  <h2 class="_title"><%= @employee.full_name %> <i class="fas fa-user"></i></h2>
+  <div class="time_sheet_pagination">
+    <%= paginate @time_sheets %>
+  </div>
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">出社日</th>
+        <th scope="col">出勤</th>
+        <th scope="col">退勤</th>
+        <th scope="col">労働時間</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @time_sheets.each do |time_sheet| %>
+        <tr>
+          <td><%= time_sheet.try(:work_day) %></td>
+          <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_in)) %></td>
+          <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_out)) %></td>
+          <td><%= time_sheet.working_time %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="time_sheet_pagination">
+    <%= paginate @time_sheets %>
+  </div>
+</article>
