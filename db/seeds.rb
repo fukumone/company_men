@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 40.times do
-  employee_attributes = { first_name: "山田"+rand(10).to_s, last_name: "太郎"+rand(10).to_s }
+  employee_attributes = { first_name: "山田", last_name: "太郎 "+rand(10).to_s }
 
   employee = Employee.create(employee_attributes)
 

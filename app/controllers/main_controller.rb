@@ -5,4 +5,7 @@ class MainController < ApplicationController
 
   def search
   end
+
+  def help
+  end
 end
