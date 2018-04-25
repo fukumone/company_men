@@ -2,9 +2,11 @@ class SlackForm
   # include Virtus.model
   include ActiveModel::Model
 
+  attr_reader :params, :text
+
   def initialize(params)
     @params = params
-    @text = params["text"]
+    @text = params['text']
   end
 
   def slack_notify(message:)
@@ -15,4 +17,11 @@ class SlackForm
   def save
     true
   end
+
+  def format_text
+    p self.text
+  end
+
+  private
+
 end
