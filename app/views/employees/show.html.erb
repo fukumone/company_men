@@ -26,7 +26,7 @@
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_out)) %></td>
           <td><%= time_sheet.try(:working_time) %></td>
           <td><%= time_sheet.try(:status) %></td>
-          <td><%= link_to '編集', '/' %></td>
+          <td><%= link_to '編集', [ :edit, time_sheet ] %></td>
         </tr>
       <% end %>
     </tbody>
