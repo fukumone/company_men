@@ -1,4 +1,6 @@
 class Employee < ApplicationRecord
+  scope :active, -> { where(deleted_at: nil) }
+
   has_many :time_sheets
 
   def full_name
