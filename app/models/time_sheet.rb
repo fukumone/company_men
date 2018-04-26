@@ -9,7 +9,7 @@ class TimeSheet < ApplicationRecord
 
   def ja_work_day
     date = self.work_day
-    "#{date} (#{%w(日 月 火 水 木 金 土)[date.wday]})"
+    "#{date.strftime('%m月%d日')} (#{%w(日 月 火 水 木 金 土)[date.wday]})"
   end
 
   def working_time
