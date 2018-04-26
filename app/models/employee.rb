@@ -6,7 +6,7 @@ class Employee < ApplicationRecord
   end
 
   def current_time_sheet
-    time_sheet = self.time_sheets.where(work_day: Date.current).last
+    time_sheet = self.time_sheets.find_or_create_by(work_day: Date.current)
     time_sheet
   end
 end
