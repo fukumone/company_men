@@ -48,6 +48,8 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.3)
     byebug (10.0.2)
+    clockwork (2.0.3)
+      tzinfo
     concurrent-ruby (1.0.5)
     crass (1.0.4)
     database_cleaner (1.7.0)
@@ -206,6 +208,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.1.0)
   byebug
+  clockwork
   database_cleaner
   factory_bot_rails
   jbuilder (~> 2.5)
