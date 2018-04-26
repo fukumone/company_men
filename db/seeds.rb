@@ -6,12 +6,22 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-40.times do
+10.times do |ind|
   employee_attributes = { first_name: "山田", last_name: "太郎 "+rand(10).to_s }
 
   employee = Employee.create(employee_attributes)
 
-  time_sheet_attributes = { work_day: Date.current, clock_in: Time.current, clock_out: Time.current.since(8.hour), employee: employee }
+  if ind.odd?
+    time_sheet_attributes = { work_day: Date.current,
+                              clock_in: Time.current,
+                              clock_out: Time.current.since(8.hour),
+                              employee: employee }
+  else
+    time_sheet_attributes = { work_day: Date.current,
+                              clock_in: Time.current,
+                              clock_out: nil,
+                              employee: employee }
+  end
 
   time_sheet = TimeSheet.create(time_sheet_attributes)
 end

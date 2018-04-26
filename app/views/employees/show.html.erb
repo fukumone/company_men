@@ -3,6 +3,8 @@
   <div class="time_sheet_pagination">
     <%= paginate @time_sheets %>
   </div>
+  <p>総労働時間: <%= @employee.total_working_time(date: Date.current) %></p>
+
   <%= render 'common/search' %>
   <table class="table table-hover">
     <thead>
@@ -11,6 +13,8 @@
         <th scope="col">出勤</th>
         <th scope="col">退勤</th>
         <th scope="col">労働時間</th>
+        <th scope="col">勤務状態</th>
+        <th scope="col">アクション</th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +23,9 @@
           <td><%= time_sheet.try(:work_day) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_in)) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_out)) %></td>
-          <td><%= time_sheet.working_time %></td>
+          <td><%= time_sheet.try(:working_time) %></td>
+          <td><%= time_sheet.try(:status) %></td>
+          <td><%= link_to '編集', '/' %></td>
         </tr>
       <% end %>
     </tbody>
