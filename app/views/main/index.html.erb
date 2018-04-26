@@ -24,7 +24,7 @@
         <% time_sheet =  employee.current_time_sheet %>
         <tr>
           <td scope="row"><%= link_to employee.full_name, employee %></td>
-          <td><%= time_sheet.try(:work_day) %></td>
+          <td><%= time_sheet.try(:ja_work_day) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_in)) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_out)) %></td>
           <td><%= time_sheet.try(:working_time) %></td>
