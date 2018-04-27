@@ -12,5 +12,5 @@ module Clockwork
     job&.perform_now
   end
 
-  every(1.day, TimeSheetJob, :at => '24:00')
+  every(1.day, TimeSheetJob, :at => '00:00')
 end
