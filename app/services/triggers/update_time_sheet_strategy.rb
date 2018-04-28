@@ -1,5 +1,5 @@
 module Triggers
-  class UpdateClockInOrOutStrategy < ParentStrategy
+  class UpdateTimeSheetStrategy < ParentStrategy
     include ActiveModel::Model
 
     attr_reader :params, :user_id, :text, :work_in_or_out, :work_time
@@ -8,7 +8,7 @@ module Triggers
               :user_id,
               :text,
               :work_in_or_out,
-              :work_time
+              :work_time,
               presence: true
 
     def initialize(params)
@@ -22,19 +22,19 @@ module Triggers
     def execute
       if valid?
         employee = Employee.find_by(slack_user_id: user_id)
-        create_or_update_time_sheet!(employee)
-        send_slack(message: 'タイムシートを登録 or 更新にしました！')
+        update_time_sheet!(employee)
+        send_slack(message: 'タイムシートを更新にしました！')
       else
-        raise SlackEventError, "タイムシートの登録 or 更新に失敗しました"
+        raise SlackEventError, "タイムシートの更新に失敗しました"
       end
     rescue => e
-      self.failure_message = 'タイムシートを登録 or 更新に失敗しました'
+      self.failure_message = 'タイムシートを更新に失敗しました'
       raise SlackEventError, e
     end
 
     private
-    def create_or_update_time_sheet!(employee)
-      time_sheet = employee.time_sheets.find_or_initialize_by!(work_day: date_parse(time: work_time))
+    def update_time_sheet!(employee)
+      time_sheet = employee.time_sheets.find_by!(work_day: date_parse(time: work_time))
       time_sheet.clock_in = time_parse(time: work_time) if work_in_or_out == 'ok'
       time_sheet.clock_out = time_parse(time: work_time) if work_in_or_out == 'bye'
       time_sheet.save!
