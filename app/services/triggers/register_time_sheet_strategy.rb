@@ -22,7 +22,8 @@ module Triggers
       if valid?
         employee = Employee.find_by(slack_user_id: user_id)
         update_time_sheet!(employee)
-        send_slack(message: 'タイムシートを登録しました！')
+        message = work_in_or_out == 'ok' ? '勤務開始しました' : '勤務が終了しました'
+        send_slack(message: message)
       else
         raise SlackEventError, 'タイムシートを登録できませんでした'
       end
