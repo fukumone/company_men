@@ -17,13 +17,21 @@ module Triggers
 
     def execute
       if valid?
-        employee = Employee.find_or_create_by!(slack_user_id: user_id)
+        employee = Employee.find_by(slack_user_id: user_id)
+        if employee
+          raise SlackEventError, '既に作成済みです'
+        end
+        ActiveRecord::Base.transaction do
+          employee = Employee.create!(slack_user_id: user_id)
+          time_sheet = employee.time_sheets.build(work_day: Date.current)
+          time_sheet.save!
+        end
         send_slack(message: 'ユーザー作成に成功しました！')
       else
         raise SlackEventError, '社員を作成できませんでした'
       end
     rescue => e
-      self.failure_message = 'ユーザー作成に失敗しました'
+      self.failure_message = e.message
       raise SlackEventError, e
     end
   end
