@@ -20,11 +20,11 @@ module Triggers
         employee = Employee.find_or_create_by!(slack_user_id: user_id)
         send_slack(message: 'ユーザー作成に成功しました！')
       else
-        raise TrigerEventError, '社員を作成できませんでした'
+        raise SlackEventError, '社員を作成できませんでした'
       end
     rescue => e
       self.failure_message = 'ユーザー作成に失敗しました'
-      raise TrigerEventError, e
+      raise SlackEventError, e
     end
   end
 end

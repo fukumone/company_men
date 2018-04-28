@@ -24,11 +24,11 @@ module Triggers
         create_time_sheet!(employee)
         send_slack(message: 'タイムシートを登録しました！')
       else
-        raise TrigerEventError, 'タイムシートを登録できませんでした'
+        raise SlackEventError, 'タイムシートを登録できませんでした'
       end
     rescue => e
       self.failure_message = 'タイムシートの登録に失敗しました'
-      raise TrigerEventError, e
+      raise SlackEventError, e
     end
 
     private
@@ -40,7 +40,7 @@ module Triggers
       time_sheet.clock_out = current if work_in_or_out == 'bye'
       time_sheet.save!
     rescue => e
-      raise TrigerEventError, e
+      raise SlackEventError, e
     end
 
     # トリガー名 time-sheet ok yyyy:mm:dd:hh:nn

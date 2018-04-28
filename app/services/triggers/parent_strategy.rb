@@ -4,7 +4,7 @@ module Triggers
     attr_accessor :failure_message
 
     def execute
-      raise TrigerEventError, '存在しないトリガーです'
+      raise SlackEventError, '存在しないトリガーです'
     end
 
     def send_slack(message:)

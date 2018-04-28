@@ -26,7 +26,7 @@ class SlackNotify
   #   トリガー名 help
   def execute
     strategy.execute
-  rescue Triggers::TrigerEventError => e
+  rescue Triggers::SlackEventError => e
     strategy.send_slack(message: strategy.failure_message)
     Rails.logger.error e.message
     Rails.logger.error e.backtrace.join("\n")
