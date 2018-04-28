@@ -33,7 +33,9 @@ describe Triggers::RegisterTimeSheetStrategy do
 
   it 'Failure create time_sheet' do
     params = {}
-    strategy = Triggers::RegisterTimeSheetStrategy.new(params)
-    expect{ strategy.execute }.to raise_error(Triggers::SlackEventError)
+    expect{
+      strategy = Triggers::RegisterTimeSheetStrategy.new(params)
+      strategy.execute
+    }.to raise_error(Triggers::SlackEventError)
   end
 end

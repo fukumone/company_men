@@ -2,12 +2,13 @@ module Triggers
   class UpdateTimeSheetStrategy < ParentStrategy
     include ActiveModel::Model
 
-    attr_reader :params, :user_id, :text, :work_in_or_out, :work_time
+    attr_reader :params, :user_id, :text, :work_in_or_out, :work_day, :work_time
 
     validates :params,
               :user_id,
               :text,
               :work_in_or_out,
+              :work_day,
               :work_time,
               presence: true
 
@@ -33,40 +34,27 @@ module Triggers
     end
 
     private
+
     def update_time_sheet!(employee)
-      time_sheet = employee.time_sheets.find_by!(work_day: date_parse(time: work_time))
-      time_sheet.clock_in = time_parse(time: work_time) if work_in_or_out == 'ok'
-      time_sheet.clock_out = time_parse(time: work_time) if work_in_or_out == 'bye'
+      time_sheet = employee.time_sheets.find_by!(work_day: work_day)
+      time_sheet.clock_in = time_parse if work_in_or_out == 'ok'
+      time_sheet.clock_out = time_parse if work_in_or_out == 'bye'
       time_sheet.save!
-    rescue => e
-      raise SlackEventError, e
     end
 
-    # yyyy:mm:dd:hh:nn => yyyy-mm-dd
-    def date_parse(time:)
-      split_time = time.split(":")
-      year = split_time[0]
-      month = split_time[1]
-      day = split_time[2]
-      "#{year}-#{month}-#{day}"
+    def time_parse
+      time = work_day.split("-")
+      time_2 = work_time.split(":")
+      Time.new(time[0], time[1], time[2], time_2[0], time_2[1])
     end
 
-    # yyyy:mm:dd:hh:nn => yyyy-mm-dd hh:nn
-    def time_parse(time:)
-      split_time = time.split(":")
-      year = split_time[0]
-      month = split_time[1]
-      day = split_time[2]
-      hour = split_time[3]
-      min = split_time[4]
-      Time.new(year, month, day, hour, min)
-    end
-
-    # トリガー名 time-sheet ok yyyy:mm:dd:hh:nn
     def assign_attributes
       array = self.text.split(" ")
       @work_in_or_out = array[2]
-      @work_time = array[3]
+      @work_day = array[3]
+      @work_time = array[4]
+    rescue => e
+      raise SlackEventError, e
     end
   end
 end
