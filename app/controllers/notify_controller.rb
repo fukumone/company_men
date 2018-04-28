@@ -3,8 +3,6 @@ class NotifyController < ApplicationController
 
   def receive
     form = SlackForm.new(params)
-    if form.valid && form.save
-      form.slack_notify(message: '打刻完了、今日もよろしくお願いします')
-    end
+    form.slack_notify
   end
 end
