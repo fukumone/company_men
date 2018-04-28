@@ -1,5 +1,5 @@
 module Triggers
-  class CreateClockInOrOutStrategy < ParentStrategy
+  class RegisterTimeSheetStrategy < ParentStrategy
     include ActiveModel::Model
 
     attr_reader :params, :user_id, :text, :work_in_or_out
@@ -21,7 +21,7 @@ module Triggers
     def execute
       if valid?
         employee = Employee.find_by(slack_user_id: user_id)
-        create_time_sheet!(employee)
+        update_time_sheet!(employee)
         send_slack(message: 'タイムシートを登録しました！')
       else
         raise SlackEventError, 'タイムシートを登録できませんでした'
@@ -33,8 +33,8 @@ module Triggers
 
     private
 
-    def create_time_sheet!(employee)
-      time_sheet = employee.time_sheets.build(work_day: Date.current)
+    def update_time_sheet!(employee)
+      time_sheet = employee.time_sheets.find_by(work_day: Date.current)
       current = Time.current
       time_sheet.clock_in = current if work_in_or_out == 'ok'
       time_sheet.clock_out = current if work_in_or_out == 'bye'
@@ -47,6 +47,8 @@ module Triggers
     def assign_attributes
       array = self.text.split(" ")
       @work_in_or_out = array[1]
+    rescue => e
+      raise SlackEventError, e
     end
 
   end

@@ -16,7 +16,7 @@ describe Triggers::CreateEmployeeStrategy do
     expect(employee.present?).to be_truthy
   end
 
-  it 'failure create employee' do
+  it 'Failure create employee' do
     params = {}
     strategy = Triggers::CreateEmployeeStrategy.new(params)
     expect{ strategy.execute }.to raise_error(Triggers::SlackEventError)
