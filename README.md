@@ -1,24 +1,32 @@
-# README
+# Company Men
+勤怠管理アプリケーション
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## How to use
 
-Things you may want to cover:
+### docker版
 
-* Ruby version
+build
 
-* System dependencies
+```
+$ docker-compose build
+```
 
-* Configuration
+### ローカル版
 
-* Database creation
+サーバー起動
 
-* Database initialization
+```
+$ bundle exec foreman start
+```
 
-* How to run the test suite
+db作成、dbのmigrate
 
-* Services (job queues, cache servers, search engines, etc.)
+```
+$ bundle exec rake db:create && rake db:migrate
+```
 
-* Deployment instructions
+testデータの挿入
 
-* ...
+```
+$ bundle exec rake db:seed
+```
