@@ -8,8 +8,12 @@ module Triggers
     end
 
     def send_slack(message:)
-      notifier = Slack::Notifier.new('https://hooks.slack.com/services/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')
+      notifier = Slack::Notifier.new(ENV['SLACK_HOOK_URL'])
       notifier.ping(message)
+    rescue => e
+      raise StandardError, 'slackの連携に失敗しました'
+      Rails.logger.error e.message
+      Rails.logger.error e.backtrace.join("\n")
     end
   end
 end

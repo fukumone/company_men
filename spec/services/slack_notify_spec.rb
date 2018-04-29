@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe SlackNotify do
-  it 'notify' do
-    params = {'user_id' => 'test12345', 'text' => "company_name join-company-men"}
+  it 'Success trigger event' do
+    params = {'user_name' => 'hoge', 'user_id' => 'test12345', 'text' => "trigger join-company-men"}
     mock = double("test")
     allow(Slack::Notifier).to receive(:new).and_return(mock)
     allow(mock).to receive(:ping)

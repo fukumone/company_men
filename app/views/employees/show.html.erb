@@ -1,5 +1,6 @@
 <article class="time_sheet">
-  <h2 class="_title"><%= @employee.full_name %> <i class="fas fa-user"></i></h2>
+  <% user_name = @employee.full_name.nil? ? @employee.full_name : @employee.slack_user_name %>
+  <h2 class="_title"><%= user_name %> <i class="fas fa-user"></i></h2>
   <div class="time_sheet_pagination">
     <%= paginate @time_sheets %>
   </div>
@@ -26,7 +27,7 @@
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_out)) %></td>
           <td><%= time_sheet.try(:working_time) %></td>
           <td><%= time_sheet.try(:status) %></td>
-          <td><%= link_to '編集', [ :edit, time_sheet ] %></td>
+          <td><%= link_to '勤怠編集', [ :edit, time_sheet ] %></td>
         </tr>
       <% end %>
     </tbody>

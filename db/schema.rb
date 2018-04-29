@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2018_04_25_003555) do
     t.string "first_name"
     t.string "last_name"
     t.string "slack_user_id"
+    t.string "slack_user_name"
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

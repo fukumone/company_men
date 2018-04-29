@@ -10,7 +10,8 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <th scope="col">社員</th>
+        <th scope="col">社員名</th>
+        <th scope="col">slack名</th>
         <th scope="col">出社日</th>
         <th scope="col">出勤</th>
         <th scope="col">退勤</th>
@@ -24,12 +25,13 @@
         <% time_sheet =  employee.current_time_sheet %>
         <tr>
           <td scope="row"><%= link_to employee.full_name, employee %></td>
+          <td scope="row"><%= link_to employee.slack_user_name, employee %></td>
           <td><%= time_sheet.try(:ja_work_day) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_in)) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_out)) %></td>
           <td><%= time_sheet.try(:working_time) %></td>
           <td><%= time_sheet.try(:status) %></td>
-          <td><%= link_to '編集', [ :edit, time_sheet ] %></td>
+          <td><%= link_to '勤怠編集', [ :edit, time_sheet ] %></td>
         </tr>
       <% end %>
     </tbody>

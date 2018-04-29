@@ -2,7 +2,7 @@ module Triggers
   class RegisterTimeSheetStrategy < ParentStrategy
     include ActiveModel::Model
 
-    attr_reader :params, :user_id, :text, :work_in_or_out
+    attr_reader :params, :user_id, :user_id, :text, :work_in_or_out
 
     validates :params,
               :user_id,

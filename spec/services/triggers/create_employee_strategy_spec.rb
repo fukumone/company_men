@@ -8,7 +8,7 @@ describe Triggers::CreateEmployeeStrategy do
   end
 
   it 'Success create employee' do
-    params = {'user_id' => 'test12345', 'text' => "company_name join-company-men"}
+    params = {'user_name' => 'hoge', 'user_id' => 'test12345', 'text' => 'trigger join-company-men'}
 
     strategy = Triggers::CreateEmployeeStrategy.new(params)
     strategy.execute

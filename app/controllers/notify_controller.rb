@@ -4,7 +4,7 @@ class NotifyController < ApplicationController
   def receive
     slack_notify = SlackNotify.new(strategy: trigger_hanlder)
     slack_notify.execute
-  rescue => e
+  rescue Triggers::SlackEventError => e
     strategy = Triggers::ParentStrategy.new
     strategy.send_slack(message: e.message)
   end

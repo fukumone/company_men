@@ -1,6 +1,5 @@
 module Triggers
   class HelpStrategy < ParentStrategy
-    require 'active_support/core_ext/string/strip'
 
     def execute
       send_slack(message: message)
