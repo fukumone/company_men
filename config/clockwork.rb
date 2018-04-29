@@ -13,4 +13,5 @@ module Clockwork
   end
 
   every(1.day, TimeSheetJob, :at => '00:00')
+  every(1.day, NotifyClockOutJob, :at => '07:00')
 end
