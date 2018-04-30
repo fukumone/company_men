@@ -28,7 +28,7 @@ $ docker-compose run web rake db:migrate
 サーバー起動
 
 ```
-$ bundle exec foreman start
+$ SLACK_HOOK_URL=xxxxx bundle exec foreman start
 ```
 
 db作成、dbのmigrate
