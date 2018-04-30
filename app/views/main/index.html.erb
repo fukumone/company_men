@@ -23,6 +23,7 @@
     <tbody>
       <% @employees.each do |employee| %>
         <% time_sheet =  employee.current_time_sheet %>
+        <% if time_sheet %>
         <tr>
           <td scope="row"><%= link_to employee.full_name, employee %></td>
           <td scope="row"><%= link_to employee.slack_user_name, employee %></td>
@@ -33,6 +34,7 @@
           <td><%= time_sheet.try(:status) %></td>
           <td><%= link_to '勤怠編集', [ :edit, time_sheet ] %></td>
         </tr>
+        <% end %>
       <% end %>
     </tbody>
   </table>
