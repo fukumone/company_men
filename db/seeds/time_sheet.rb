@@ -31,6 +31,12 @@ def set_done_time_sheet(employee, date)
   }
 end
 
+def holiday?(date)
+  sunday_flag = 0
+  saturday_flag = 6
+  date.wday == saturday_flag || date.wday == sunday_flag
+end
+
 def create_one_month_time_sheets
   one_month_ago = 1.month.ago
   beginning_of_day = 1
@@ -60,12 +66,6 @@ def create_current_month_time_sheets
       end
     end
   end
-end
-
-def holiday?(date)
-  sunday_flag = 0
-  saturday_flag = 6
-  date.wday == saturday_flag || date.wday == sunday_flag
 end
 
 create_one_month_time_sheets
