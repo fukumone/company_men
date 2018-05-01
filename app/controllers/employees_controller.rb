@@ -1,7 +1,7 @@
 class EmployeesController < ApplicationController
   def show
     @employee = Employee.find(params[:id])
-    @time_sheets = @employee.time_sheets.page(params[:page]).per(20)
+    @time_sheets = @employee.time_sheets.order(work_day: :desc).page(params[:page]).per(20)
   end
 
   def new
