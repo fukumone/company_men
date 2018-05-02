@@ -1,3 +1,12 @@
+<% if flash.alert %>
+  <div class="alert alert-danger" role="alert">
+    <%= flash.alert %>
+  </div>
+  <% @employee.errors.full_messages.each do |message| %>
+    <p style="color: red;">・<%= message %></p>
+  <% end %>
+<% end %>
+
 <%= form_for @employee do |f| %>
   <div class='form-group row'>
     <%= f.label :first_name, class: 'col-sm-1 col-form-label' %>

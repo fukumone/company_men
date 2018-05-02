@@ -7,6 +7,11 @@
     <%= paginate @employees %>
   </div>
   <%= render 'common/search' %>
+  <% if flash.notice %>
+    <div class="alert alert-primary" role="alert">
+      <%= flash.notice %>
+    </div>
+  <% end %>
   <table class="table table-hover">
     <thead>
       <tr>
