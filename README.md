@@ -5,6 +5,13 @@
 
 ### docker版
 
+サーバー起動
+
+```
+$ docker-compose up
+# open http://localhost
+```
+
 build
 
 ```
@@ -14,13 +21,19 @@ $ docker-compose build
 db create
 
 ```
-$ docker-compose run web rake db:create
+$ docker-compose run --rm web bundle exec rake db:create
 ```
 
 db migrate
 
 ```
-$ docker-compose run web rake db:migrate
+$ docker-compose run --rm web bundle exec rake db:migrate
+```
+
+testデータの挿入
+
+```
+$ docker-compose run --rm web bundle exec rake db:seed
 ```
 
 ### ローカル版

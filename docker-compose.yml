@@ -1,18 +1,48 @@
 version: '3'
 services:
   db:
-    image: mysql
+    container_name: db_container
+    image: mysql:5.7
     volumes:
-      - ./docker/mysql/volumes:/var/lib/mysql
+      - ./docker/mysql/volumes:/var/lib/mysql:cached
     environment:
       MYSQL_DATABASE: company_men_development
       MYSQL_ROOT_PASSWORD: password
+    ports:
+      - "3306:3306"
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_general_ci
+    restart: always
+    logging:
+      options:
+        max-size: 5m
+        max-file: "10"
   web:
+    container_name: web_container
     build: .
-    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    command: bundle exec puma -C config/puma.rb
     volumes:
       - .:/app
     ports:
       - "3000:3000"
     depends_on:
       - db
+    restart: always
+    logging:
+      options:
+        max-size: 5m
+        max-file: "10"
+  nginx:
+    container_name: nginx_container
+    build: ./nginx
+    volumes:
+      - .:/app
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - web
+    ports:
+      - '80:80'
+    restart: always
+    logging:
+      options:
+        max-size: 5m
+        max-file: "10"
