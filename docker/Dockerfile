@@ -8,11 +8,12 @@ RUN gem install bundler \
   && apk --update --upgrade add $BUILD_PACKAGES \
   && apk add mariadb-dev tzdata linux-headers postgresql-dev sqlite-dev git nodejs \
   && rm /usr/lib/libmysqld* \
-  && echo 'gem: --no-document' > /etc/gemrc
+  && echo 'gem: --no-document' > /etc/gemrc \
+  && mkdir -p /var/www
 
-WORKDIR /app
-COPY Gemfile Gemfile
-COPY Gemfile.lock Gemfile.lock
-RUN bundle install
+WORKDIR var/www
+COPY Gemfile /var/www/Gemfile
+COPY Gemfile.lock /var/www/Gemfile.lock
+RUN bundle install --jobs=4
 
 EXPOSE  3000

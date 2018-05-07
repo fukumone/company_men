@@ -34,4 +34,4 @@ yarn-debug.log*
 
 database.yml
 
-/docker
+/docker/mysql

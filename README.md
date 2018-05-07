@@ -8,32 +8,38 @@
 サーバー起動
 
 ```
-$ docker-compose up
+$ docker-compose -f docker-compose.development.yml up
 # open http://localhost
 ```
 
 build
 
 ```
-$ docker-compose build
+$ docker-compose -f docker-compose.development.yml build
 ```
 
 db create
 
 ```
-$ docker-compose run --rm web bundle exec rake db:create
+$ docker-compose -f docker-compose.development.yml run --rm web bundle exec rake db:create
 ```
 
 db migrate
 
 ```
-$ docker-compose run --rm web bundle exec rake db:migrate
+$ docker-compose -f docker-compose.development.yml run --rm web bundle exec rake db:migrate
 ```
 
 testデータの挿入
 
 ```
-$ docker-compose run --rm web bundle exec rake db:seed
+$ docker-compose -f docker-compose.development.yml run --rm web bundle exec rake db:seed
+```
+
+# 本番運用
+
+```
+$ docker-compose -f docker-compose.production.yml up -d
 ```
 
 ### ローカル版
