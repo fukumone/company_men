@@ -1,0 +1,17 @@
+ja:
+  activerecord:
+    attributes:
+      time_sheet:
+        work_day: 勤務日
+        clock_in: 出勤時間
+        clock_out: 退勤時間
+    errors:
+      models:
+        time_sheet:
+          attributes:
+            work_day:
+              blank: を入力してください。
+            clock_in:
+              blank: を入力してください。
+            clock_out:
+              blank: を入力してください。

@@ -1,0 +1,20 @@
+ja:
+  activerecord:
+    attributes:
+      employee:
+        family_name: 姓
+        given_name: 名
+        slack_user_id: slack ID
+        slack_user_name: slack name
+    errors:
+      models:
+        employee:
+          attributes:
+            family_name:
+              blank: を入力してください。
+            given_name:
+              blank: を入力してください。
+            slack_user_id:
+              blank: を入力してください。
+            slack_user_name:
+              blank: を入力してください。
