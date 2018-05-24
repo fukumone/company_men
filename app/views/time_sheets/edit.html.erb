@@ -16,11 +16,11 @@
   </div>
   <div class='form-group row'>
     <%= f.label :clock_in, class: 'col-sm-1 col-form-label' %>
-    <%= f.time_select :clock_in, {include_blank: @time_sheet.clock_out.nil?}, class: 'col-md-1 form-control' %>
+    <%= f.time_select :clock_in, {}, class: 'col-md-1 form-control' %>
   </div>
   <div class='form-group row'>
     <%= f.label :clock_out, class: 'col-sm-1 col-form-label' %>
-    <%= f.time_select :clock_out, {include_blank: @time_sheet.clock_out.nil?}, class: 'col-md-1 form-control' %>
+    <%= f.time_select :clock_out, {}, class: 'col-md-1 form-control' %>
   </div>
   <%= f.submit '更新', class: 'btn btn-primary' %>
 <% end %>

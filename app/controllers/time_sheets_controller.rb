@@ -6,8 +6,9 @@ class TimeSheetsController < ApplicationController
 
   def update
     @time_sheet = TimeSheet.find(params[:id])
-    @time_sheet.assign_attributes(time_sheet_params)
-    if @time_sheet.save
+
+    @form = TimeSheetForm.new(time_sheet: @time_sheet, params: time_sheet_params)
+    if @form.save
       flash.notice = 'タイムシートの更新に成功'
       redirect_to root_path
     else
