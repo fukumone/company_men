@@ -1,7 +1,7 @@
 class TimeSheet < ApplicationRecord
   belongs_to :employee
 
-  enum status: { off: 0, working: 1, done: 2 }
+  enum status: { off: 0, working: 1, done: 2, paid_vacation: 3 }
 
   validates :work_day, uniqueness: { scope: :employee_id }
 
