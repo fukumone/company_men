@@ -1,5 +1,5 @@
 class TimeSheetForm
-  attr_reader :time_sheet, :params, :work_day, :clock_in, :clock_out
+  attr_reader :time_sheet, :params, :work_day, :clock_in, :clock_out, :status
 
   def initialize(time_sheet:, params:)
     @time_sheet = time_sheet
@@ -12,6 +12,7 @@ class TimeSheetForm
       work_day: work_day,
       clock_in: clock_in,
       clock_out: clock_out,
+      status: status
     )
   end
 
@@ -31,5 +32,6 @@ class TimeSheetForm
     @work_day = Date.new(work_day_1i, work_day_2i, work_day_3i)
     @clock_in = Time.new(clock_in_1i, clock_in_2i, clock_in_3i)
     @clock_out = Time.new(clock_out_1i, clock_out_2i, clock_out_3i)
+    @status = params['status'].to_i
   end
 end

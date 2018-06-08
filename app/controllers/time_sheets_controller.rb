@@ -20,6 +20,6 @@ class TimeSheetsController < ApplicationController
   private
 
   def time_sheet_params
-    params.require(:time_sheet).permit(:work_day, :clock_in, :clock_out)
+    params.require(:time_sheet).permit(:work_day, :clock_in, :clock_out, :status)
   end
 end
