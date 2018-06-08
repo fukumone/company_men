@@ -29,6 +29,7 @@ class TimeSheet < ApplicationRecord
   private
 
   def update_status
+    return if status == 'paid_vacation'
     if self.clock_in && self.clock_out
       self.status = :done
     end
