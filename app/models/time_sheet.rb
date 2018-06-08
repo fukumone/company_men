@@ -13,7 +13,7 @@ class TimeSheet < ApplicationRecord
   end
 
   def ja_status
-    { 'off' => '休み', 'working' => '出勤中', 'done' => '勤務終了' }[status]
+    { 'off' => '休み', 'working' => '出勤中', 'done' => '勤務終了', 'paid_vacation' => '有給休暇' }[status]
   end
 
   def working_time
