@@ -36,7 +36,7 @@
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_in)) %></td>
           <td><%= TimeSheet.sheet_format(time: time_sheet.try(:clock_out)) %></td>
           <td><%= time_sheet.try(:working_time) %></td>
-          <td><%= time_sheet.try(:status) %></td>
+          <td><%= time_sheet.try(:ja_status) %></td>
           <td><%= link_to '勤怠編集', [ :edit, time_sheet ] %></td>
         </tr>
         <% end %>

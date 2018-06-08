@@ -12,6 +12,10 @@ class TimeSheet < ApplicationRecord
     "#{date.strftime('%m月%d日')} (#{%w(日 月 火 水 木 金 土)[date.wday]})"
   end
 
+  def ja_status
+    { 'off' => '休み', 'working' => '出勤中', 'done' => '勤務終了' }[status]
+  end
+
   def working_time
     return 0 if self.clock_out.nil? || self.clock_in.nil?
     time = self.clock_out - self.clock_in
