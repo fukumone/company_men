@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2018_04_25_003555) do
     t.string "last_name"
     t.string "slack_user_id"
     t.string "slack_user_name"
+    t.integer "paid_vacation_days", default: 0
     t.datetime "deleted_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

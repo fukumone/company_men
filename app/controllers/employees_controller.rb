@@ -1,22 +1,11 @@
 class EmployeesController < ApplicationController
+  def index
+    @employees = Employee.all
+  end
+
   def show
     @employee = Employee.find(params[:id])
     @time_sheets = @employee.time_sheets.order(work_day: :desc).page(params[:page]).per(20)
-  end
-
-  def new
-    @employee = Employee.new
-  end
-
-  def create
-    @employee = Employee.new(employee_params)
-    if @employee.save
-      flash.notice = '社員の作成に成功'
-      redirect_to root_path
-    else
-      flash.now[:alert] = '社員の作成に失敗'
-      render 'new'
-    end
   end
 
   def edit
@@ -28,7 +17,7 @@ class EmployeesController < ApplicationController
     @employee.assign_attributes(employee_params)
     if @employee.save
       flash.notice = '社員の更新に成功'
-      redirect_to root_path
+      redirect_to action: :index
     else
       flash.now[:alert] = '社員の更新に失敗'
       render 'edit'
@@ -36,11 +25,19 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
+    @employee = Employee.find(params[:id])
+    if @employee.destroy
+      flash.notice = '社員の削除に成功'
+      redirect_to action: :index
+    else
+      flash.now[:alert] = '社員の削除に失敗'
+      render 'index'
+    end
   end
 
   private
 
   def employee_params
-    params.require(:employee).permit(:first_name, :last_name)
+    params.require(:employee).permit(:first_name, :last_name, :paid_vacation_days)
   end
 end
