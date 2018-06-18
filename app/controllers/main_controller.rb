@@ -4,6 +4,7 @@ class MainController < ApplicationController
   end
 
   def search
+    render action: :index
   end
 
   def help
