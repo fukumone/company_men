@@ -1,7 +1,5 @@
 module TimeSheetSearch
   class MultipleForm
-    include ActiveModel::Model
-
     attr_reader :params, :employees, :work_day
 
     def initialize(params=nil)

@@ -5,7 +5,11 @@ class EmployeesController < ApplicationController
 
   def show
     @employee = Employee.find(params[:id])
-    @time_sheets = @employee.time_sheets.order(work_day: :desc).page(params[:page]).per(20)
+    @form = TimeSheetSearchForm.new(TimeSheetSearch::SingularForm.new(params)).strategy
+    @time_sheets = @form.list.order(work_day: :desc).page(params[:page]).per(20)
+  end
+
+  def search
   end
 
   def edit
