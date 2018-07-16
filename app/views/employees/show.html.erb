@@ -4,7 +4,7 @@
   <div class="time_sheet_pagination">
     <%= paginate @time_sheets %>
   </div>
-  <h3><%= Date.current.month %>月の勤務</h3>
+  <h3><%= @form.work_day.month %>月の勤務</h3>
   <p>総労働時間: <%= @employee.total_working_time(date: @form.work_day) %></p>
 
   <%= render 'search' %>
