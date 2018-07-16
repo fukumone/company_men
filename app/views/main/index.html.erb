@@ -1,5 +1,5 @@
 <article class="time_sheet">
-  <h2 class="_title">本日:<%= Time.current.strftime("%m月%d日") %>の勤務日程 <i class="fas fa-users"></i></h2>
+  <h2 class="_title">本日:<%= @form.work_day.strftime("%m月%d日") %>の勤務日程 <i class="fas fa-users"></i></h2>
   <section>
     <%= link_to '社員一覧', :employees %>
   </section>
@@ -26,9 +26,10 @@
       </tr>
     </thead>
     <tbody>
-      <% @employees.each do |employee| %>
-        <% time_sheet =  employee.current_time_sheet %>
-        <% if time_sheet %>
+      <% @list.each do |data| %>
+        <% employee = data.employee %>
+        <% time_sheet = data.time_sheet %>
+        <% next if employee.nil? || time_sheet.nil? %>
         <tr>
           <td scope="row"><%= link_to employee.full_name, employee %></td>
           <td scope="row"><%= link_to employee.slack_user_name, employee %></td>
@@ -39,7 +40,6 @@
           <td><%= time_sheet.try(:ja_status) %></td>
           <td><%= link_to '勤怠編集', [ :edit, time_sheet ] %></td>
         </tr>
-        <% end %>
       <% end %>
     </tbody>
   </table>

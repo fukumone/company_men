@@ -1,9 +1,14 @@
 class MainController < ApplicationController
   def index
-    @employees = Employee.page(params[:page]).per(20)
+    @form = TimeSheetSearchForm.new
+    @employees = @form.employees.page(params[:page]).per(20)
+    @list = @form.list
   end
 
   def search
+    @form = TimeSheetSearchForm.new(params)
+    @employees = @form.employees.page(params[:page]).per(20)
+    @list = @form.search
     render action: :index
   end
 

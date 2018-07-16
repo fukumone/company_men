@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   resources :time_sheets
   post '/notify_receive', to: 'notify#receive'
   get '/help', to: 'main#help'
+  get '/search', to: 'main#search'
 end

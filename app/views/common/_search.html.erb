@@ -9,18 +9,20 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">検索一覧</h5>
+          <h5 class="modal-title" id="exampleModalLabel">検索</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <%= form_tag("/search", method: :get) do |form| %>
         <div class="modal-body">
-          ...
+          <%= date_select "work_day", "work_day", use_month_numbers: true, class: 'col-md-12 form-control' %>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">検索</button>
+          <%= submit_tag '検索', class: 'btn btn-primary' %>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
         </div>
+        <% end %>
       </div>
     </div>
   </div>
