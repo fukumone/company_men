@@ -1,0 +1,30 @@
+<section class="time_sheets_search">
+  <!-- Button trigger modal -->
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    検索
+    <i class="fas fa-search"></i>
+  </button>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">検索</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <%= form_tag("/search", method: :get) do |form| %>
+        <div class="modal-body">
+          <%= label_tag :work_day, "勤務日程：",class: 'col-md-3 col-form-label' %>
+          <%= date_select :work_day, "work_day", use_month_numbers: true, class: 'col-md-9 form-control' %>
+        </div>
+        <div class="modal-footer">
+          <%= submit_tag '検索', class: 'btn btn-primary' %>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</section>
