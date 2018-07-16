@@ -1,3 +1,4 @@
+# 退勤の登録していないユーザーに登録を促す
 class NotifyClockOutJob < ApplicationJob
   queue_as :default
 
