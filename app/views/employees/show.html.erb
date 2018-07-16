@@ -1,5 +1,5 @@
 <article class="time_sheet">
-  <% user_name = @employee.full_name.nil? ? @employee.full_name : @employee.slack_user_name %>
+  <% user_name = @employee.full_name.blank? ? @employee.slack_user_name : "#{@employee.full_name}(#{@employee.slack_user_name})" %>
   <h2 class="_title"><%= user_name %> <i class="fas fa-user"></i></h2>
   <div class="time_sheet_pagination">
     <%= paginate @time_sheets %>
