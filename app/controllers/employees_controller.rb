@@ -4,12 +4,16 @@ class EmployeesController < ApplicationController
   end
 
   def show
-    @employee = Employee.find(params[:id])
     @form = TimeSheetSearchForm.new(TimeSheetSearch::SingularForm.new(params)).strategy
+    @employee = @form.employee
     @time_sheets = @form.list.order(work_day: :desc).page(params[:page]).per(20)
   end
 
   def search
+    @form = TimeSheetSearchForm.new(TimeSheetSearch::SingularForm.new(params)).strategy
+    @employee = @form.employee
+    @time_sheets = @form.search.order(work_day: :desc).page(params[:page]).per(20)
+    render action: :show
   end
 
   def edit

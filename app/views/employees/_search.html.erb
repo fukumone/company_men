@@ -14,11 +14,12 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <%= form_tag("/search", method: :get) do |form| %>
+        <%= form_tag("/employees/search", method: :get) do |form| %>
         <div class="modal-body">
           <%= label_tag :work_day, "勤務日程：",class: 'col-md-3 col-form-label' %>
-          <%= date_select :work_day, "work_day", use_month_numbers: true, class: 'col-md-9 form-control' %>
+          <%= date_select :work_day, "work_day", use_month_numbers: true, discard_day: true, class: 'col-md-9 form-control' %>
         </div>
+        <%= hidden_field_tag :id, @employee.id %>
         <div class="modal-footer">
           <%= submit_tag '検索', class: 'btn btn-primary' %>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
