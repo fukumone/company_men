@@ -16,7 +16,8 @@
         </div>
         <%= form_tag("/search", method: :get) do |form| %>
         <div class="modal-body">
-          <%= date_select "work_day", "work_day", use_month_numbers: true, class: 'col-md-12 form-control' %>
+          <%= label_tag :work_day, "勤務日程：",class: 'col-md-3 col-form-label' %>
+          <%= date_select :work_day, "work_day", use_month_numbers: true, class: 'col-md-9 form-control' %>
         </div>
         <div class="modal-footer">
           <%= submit_tag '検索', class: 'btn btn-primary' %>
