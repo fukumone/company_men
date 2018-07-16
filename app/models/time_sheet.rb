@@ -1,6 +1,7 @@
 class TimeSheet < ApplicationRecord
   belongs_to :employee
 
+  # 0: 休み or 未登録, 1: 出勤中, 2: 勤務終了, 3: 有給休暇
   enum status: { off: 0, working: 1, done: 2, paid_vacation: 3 }
 
   validates :work_day, uniqueness: { scope: :employee_id }
