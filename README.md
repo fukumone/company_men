@@ -36,12 +36,6 @@ testデータの挿入
 $ docker-compose -f docker-compose.development.yml run --rm web bundle exec rake db:seed
 ```
 
-# 本番運用
-
-```
-$ docker-compose -f docker-compose.production.yml up -d
-```
-
 ### ローカル版
 
 サーバー起動
